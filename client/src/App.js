@@ -1,6 +1,8 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 function App() {
 
@@ -13,11 +15,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
-        <p> This survay app is under developmnt- Tasnim will Update </p>
-      </header>
+    <nav>
+    <Link to="/about">About us</Link>
+    </nav>
     </div>
   );
 }
