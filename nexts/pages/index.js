@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import clientPromise from '../lib/mongodb'
+import connection from '../lib/mongodb'
 
 export default function Home({ isConnected }) {
   return (
@@ -224,7 +224,7 @@ export default function Home({ isConnected }) {
 
 export async function getServerSideProps(context) {
   try {
-    await clientPromise
+    connection()
     // `await clientPromise` will use the default database passed in the MONGODB_URI
     // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
     //
