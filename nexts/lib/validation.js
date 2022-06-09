@@ -25,17 +25,18 @@ const LoginValidation = (data) =>{
 }
 
 //Middleware- checks token
-const auth = (req,res,next) => {
-  const token = req.header('auth-token')
-  if(!token) return res.status(401).send({message: "Access Denied"})
+const auth = (req,res) => {
+
+  const token = req.headers.auth_token
+  if(!token) return 401// return res.status(401).send({message: "Access Denied"})
 
     try{
       const verified = jwt.verify(token, TOKEN_SECRET)
       req.user = verified
-      next()
+      return 200
 
     } catch(e){
-      res.status(400).send({message: "Invalid Token"})
+      return 400//res.status(400).send({message: "Invalid Token"})
     }
 
 }
