@@ -135,8 +135,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50px;
-  min-width: 900px;
-  min-height: 500px;
+  width: 850px;
+  height: 550px;
 }
 .container{
   color: var(--primary);
@@ -153,15 +153,15 @@
   width: 100%;
 }
 .form_div{
-  margin-left: -110px;
+  margin-left: -250px;
 
 }
 .form_div h1{
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 45px;
 }
 .inputs{
-  margin-bottom: 80px;
+  margin-bottom: 65px;
 }
 
 
@@ -212,13 +212,13 @@
   color: var(--bg);
   background: transparent;
   padding: 10px 20px;
-  min-width: 101%;
-  border-radius: 0.2rem;
+  width: 100%;
+  border-radius: 0.3rem;
   outline: none;
   border: none;
   border-bottom: 3.5px solid var(--bg);
 
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: 1.5px;
   font-weight: 700;
 

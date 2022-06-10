@@ -3,7 +3,11 @@ import Head from 'next/head'
 import loginpic from '../public/pic3.png';
 import Image from 'next/image'
 import styles from'./loginStyle.module.css'
+import { useRouter } from "next/router";
+import SignInError from "../lib/components/signin"
+
 export default function SignIn({ csrfToken }) {
+  const { error } = useRouter().query
   return (
     <>
     <Head>
@@ -39,10 +43,11 @@ export default function SignIn({ csrfToken }) {
 
               <form action="./api/auth/callback/credentials" method="POST">
               <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+              {error && <SignInError error={error} />}
                 <div className={styles.inputs}>
                   <div className={styles.field}>
                     <label>
-                      <input name="username" id="input-username-for-credentials-provider" type="text" placeholder=" " autocomplete="off"/>
+                      <input name="username" id="input-username-for-credentials-provider" type="text" placeholder=" " required autoComplete="off"/>
                       <p>Username</p>
                     </label>
                   </div>
