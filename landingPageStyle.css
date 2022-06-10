@@ -11,6 +11,7 @@ body {
   background-color: #667292;
   outline: none;
 }
+
 h1,
 h2,
 h3,
@@ -124,7 +125,7 @@ img {
 .landing {
   display: flex;
   align-items: center;
-  padding: 40px 0;
+  padding-bottom: 10px;
   margin-left: 11%;
   overflow-x: hidden;
 }
@@ -132,6 +133,7 @@ img {
 .landing .landing-text {
   flex: 1;
   min-width: 465px;
+  padding-bottom: 30px;
 }
 
 
@@ -139,6 +141,7 @@ img {
   width: 100%;
   font-size: 3.9em;
   line-height: 1.15;
+    padding-bottom: 30px;
 }
 
 
@@ -150,6 +153,7 @@ img {
 
 
 .landing .landing-image {
+  padding-top: 30px;
   padding-right: 100px;
   height: 800px;
   width: 800px;
