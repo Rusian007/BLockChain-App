@@ -85,9 +85,14 @@
   "resolved" "https://registry.npmjs.org/@next/env/-/env-12.1.6.tgz"
   "version" "12.1.6"
 
-"@next/swc-win32-x64-msvc@12.1.6":
-  "integrity" "sha512-4ZEwiRuZEicXhXqmhw3+de8Z4EpOLQj/gp+D9fFWo6ii6W1kBkNNvvEx4A90ugppu+74pT1lIJnOuz3A9oQeJA=="
-  "resolved" "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-12.1.6.tgz"
+"@next/swc-linux-x64-gnu@12.1.6":
+  "integrity" "sha512-AC7jE4Fxpn0s3ujngClIDTiEM/CQiB2N2vkcyWWn6734AmGT03Duq6RYtPMymFobDdAtZGFZd5nR95WjPzbZAQ=="
+  "resolved" "https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-12.1.6.tgz"
+  "version" "12.1.6"
+
+"@next/swc-linux-x64-musl@12.1.6":
+  "integrity" "sha512-c9Vjmi0EVk0Kou2qbrynskVarnFwfYIi+wKufR9Ad7/IKKuP6aEhOdZiIIdKsYWRtK2IWRF3h3YmdnEa2WLUag=="
+  "resolved" "https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-12.1.6.tgz"
   "version" "12.1.6"
 
 "@panva/asn1.js@^1.0.0":
@@ -1091,7 +1096,7 @@
   "version" "1.0.2"
 
 "sparse-bitfield@^3.0.3":
-  "integrity" "sha1-/0rm5oZWBWuks+eSqzM004JzyhE="
+  "integrity" "sha1-/0rm5oZWBWuks+eSqzM004JzyhE= sha512-kvzhi7vqKTfkh0PZU+2D2PIllw2ymqJKujUcyPMd9Y75Nv4nPbGJZXNhxsgdQab2BmlDct1YnfQCguEvHr7VsQ=="
   "resolved" "https://registry.npmjs.org/sparse-bitfield/-/sparse-bitfield-3.0.3.tgz"
   "version" "3.0.3"
   dependencies:
@@ -1173,7 +1178,7 @@
     "punycode" "^2.1.1"
 
 "tr46@~0.0.3":
-  "integrity" "sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o="
+  "integrity" "sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o= sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw=="
   "resolved" "https://registry.npmjs.org/tr46/-/tr46-0.0.3.tgz"
   "version" "0.0.3"
 
@@ -1206,7 +1211,7 @@
     "zen-observable-ts" "^1.0.0"
 
 "util-deprecate@^1.0.1", "util-deprecate@~1.0.1":
-  "integrity" "sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8="
+  "integrity" "sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8= sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="
   "resolved" "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
   "version" "1.0.2"
 
@@ -1216,7 +1221,7 @@
   "version" "8.3.2"
 
 "webidl-conversions@^3.0.0":
-  "integrity" "sha1-JFNCdeKnvGvnvIZhHMFq4KVlSHE="
+  "integrity" "sha1-JFNCdeKnvGvnvIZhHMFq4KVlSHE= sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ=="
   "resolved" "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz"
   "version" "3.0.1"
 
@@ -1234,7 +1239,7 @@
     "webidl-conversions" "^7.0.0"
 
 "whatwg-url@^5.0.0":
-  "integrity" "sha1-lmRU6HZUYuN2RNNib2dCzotwll0="
+  "integrity" "sha1-lmRU6HZUYuN2RNNib2dCzotwll0= sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw=="
   "resolved" "https://registry.npmjs.org/whatwg-url/-/whatwg-url-5.0.0.tgz"
   "version" "5.0.0"
   dependencies:
@@ -1258,7 +1263,7 @@
     "strip-ansi" "^6.0.0"
 
 "wrappy@1":
-  "integrity" "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8="
+  "integrity" "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8= sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ=="
   "resolved" "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz"
   "version" "1.0.2"
 

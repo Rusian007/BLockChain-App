@@ -8,6 +8,8 @@ import SignInError from "../lib/components/signin"
 
 export default function SignIn({ csrfToken }) {
   const { error } = useRouter().query
+  const router = useRouter()
+
   return (
     <>
     <Head>
@@ -65,7 +67,7 @@ export default function SignIn({ csrfToken }) {
                   <button className={`${styles.btn} ${styles.bg_purple}`} type="submit">Login</button>
 
                   <p>Not Signed up yet ?</p>
-                  <button className={`${styles.btn} ${styles.bg_purple}`}>Sign Up</button>
+                  <button type="button" onClick={() => router.push('/register')} className={`${styles.btn} ${styles.bg_purple}`}>Sign Up</button>
                 </div>
 
               </form>

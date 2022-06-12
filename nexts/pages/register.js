@@ -2,8 +2,11 @@ import Head from 'next/head'
 import signuppic from '../public/pic2.png'
 import styles from'./css/SignupStyle.module.css'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 export default function Register(){
+  const router = useRouter()
+
   return (
     <div className={styles.body}>
   <div className={styles.area} >
@@ -76,7 +79,7 @@ export default function Register(){
                 <button className={` ${styles.btn} ${styles.bg_purple} `} type="submit">Sign UP</button>
 
                 <p>Already have an account ?</p>
-                <button className={` ${styles.btn} ${styles.bg_purple} `}>Login</button>
+                <button type="button" onClick={()=> router.push('/login')} className={` ${styles.btn} ${styles.bg_purple} `}>Login</button>
               </div>
 
             </form>
