@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import signuppic from '../public/pic2.png'
-import styles from'./css/SignupStyle.module.css'
+import styles from'../lib/Css/SignupStyle.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
@@ -28,7 +28,7 @@ export default function Register(){
         <div className={styles.container}>
 
           <div className={styles.img}>
-            <Image src={signuppic} alt="Illustration"  width={510} height={540} quality={100} />
+            <Image src={signuppic} alt="Illustration"  width={550} height={580} quality={100} />
           </div>
 
           <div className={styles.form_div}>

@@ -136,8 +136,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50px;
-  width: 900px;
-  height: 600px;
+  width: 950px;
+  height: 700px;
 }
 .container{
   color: var(--primary);
@@ -150,20 +150,21 @@
 .img {
   position: relative;
   right: 180px;
-  top: 45px;
-  width: 67%;
+  top: 50px;
+  width: 70%;
 }
 
 .form_div{
-  margin-left: -190px;
+  margin-left: -195px;
 
 }
 .form_div h1{
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  margin-top: 15px;
 }
 .inputs{
-  margin-bottom: 25px;
+  margin-bottom: 55px;
 }
 
 
@@ -193,6 +194,7 @@
 
 
 .buttons_center{
+
   text-align: center;
 
 }
@@ -204,7 +206,7 @@
 }
 
 .field {
-    margin-bottom: 13px;
+    margin-bottom: 15px;
 }
 .field label {
   position: relative;
@@ -220,7 +222,7 @@
   border: none;
   border-bottom: 3.5px solid var(--bg);
 
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 1.5px;
   font-weight: 700;
 

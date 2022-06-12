@@ -2,7 +2,7 @@ import { getCsrfToken } from "next-auth/client"
 import Head from 'next/head'
 import loginpic from '../public/pic3.png';
 import Image from 'next/image'
-import styles from'./css/loginStyle.module.css'
+import styles from'../lib/Css/loginStyle.module.css'
 import { useRouter } from "next/router";
 import SignInError from "../lib/components/signin"
 
