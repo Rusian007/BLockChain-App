@@ -6,9 +6,11 @@ const TOKEN_SECRET = "Secret123456789" //for testing only, not for production
 const registerValidation = (data) =>{
 
   const schema =joi.object({
+    name: joi.string().required(),
     username: joi.string().min(3).required(),
     email: joi.string().min(6).required().email(),
-    password: joi.string().min(6).required()
+    password: joi.string().min(6).required(),
+    password2: joi.string().required()
   })
 
   return schema.validate(data)
