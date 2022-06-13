@@ -7,8 +7,12 @@ connection()
 
 const register = async (req, res) =>{
   if (req.method === 'POST') {
+    
     const {error} = registerValidation(req.body)
-    if(error) return res.status(400).json({message: error.details[0].message})
+    if(error) {
+      console.log("Validation error")
+      return res.status(400).json({message: error.details[0].message})
+  }
 
     //check if user exists
     const userExists = await User.findOne({email: req.body.email})

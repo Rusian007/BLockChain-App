@@ -6,12 +6,13 @@ import { useRouter } from 'next/router'
 import { useForm } from "react-hook-form";
 import Error from "../lib/components/error"
 
+
 export default function Register(){
   const router = useRouter()
   const { register, handleSubmit ,formState: { errors }} = useForm();
 
   const onSubmit = (data)=>{
-    createUser(data)
+    createUser(JSON.stringify(data))
     
   }
 
@@ -19,14 +20,19 @@ export default function Register(){
     const response = await fetch(`/api/register`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({data})
-      }).then(res => {console.log(res)})
-    .catch(error=> console.error(error))
+        body: data
+      }).then(res => {console.log(res.json())})
+    .catch(error=> console.error("There was an Error: ",error))
     
     return true;
 }
 
   return (
+    <>
+    <Head> 
+      <title>SignUp !</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    </Head>
     <div className={styles.body}>
   <div className={styles.area} >
               <ul className={styles.circles}>
@@ -116,5 +122,6 @@ export default function Register(){
         </div>
       </section>
 </div>
+</>
   )
 }
