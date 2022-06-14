@@ -23,7 +23,7 @@ export default function Register(){
         body: data
       }).then(res => {console.log(res.json())})
     .catch(error=> console.error("There was an Error: ",error))
-    
+    router.push('/login')
     return true;
 }
 
