@@ -5,7 +5,7 @@ import "./Css/landing.css";
 import landingpic from './img/land.png'
 
 const App = () =>{
-  /*
+  
   if(window.ethereum){
     try {
       // Do something 
@@ -24,7 +24,7 @@ const App = () =>{
       
       alert("install metamask extension!!")
     }
-*/
+
   return(
     <>
     <section className="structure">
