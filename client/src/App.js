@@ -1,6 +1,6 @@
 import React from "react";
 import SimpleStorageContract from "./contracts/SimpleStorage.json";
-import getWeb3 from "./getWeb3";
+import Web3 from 'web3';
 import "./Css/landing.css";
 import landingpic from './img/land.png'
 import { Link } from "react-router-dom";
@@ -8,9 +8,26 @@ import { useNavigate } from "react-router-dom";
 
 const App = () =>{
   const navigate = useNavigate();
+
   const signIn = () => {
         navigate('/SignIn');
     }
+
+  const doSomething = async() =>{
+
+    const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
+    const accounts = await web3.eth.getAccounts()
+    const networkId = await web3.eth.net.getId();
+    const deployedNetwork = SimpleStorageContract.networks[networkId];
+
+    const instance = new web3.eth.Contract(
+            SimpleStorageContract.abi,
+            deployedNetwork && deployedNetwork.address, //if there is a deployed network then get the address
+          );
+    await instance.methods.set(5).send({ from: accounts[0] }) //set number 5
+    const res = await instance.methods.get().call() //get number 5
+    alert(`Your Number is : ${res}`)
+  }
   
  if(window.ethereum){
     try {
@@ -22,11 +39,11 @@ const App = () =>{
         }).catch(err => {
           alert("we con't run the app properly if you don't connect your Account")
         })
+
     } catch(e) {
       
       console.log(e);
     }
-      
       
     }else{
       
@@ -61,7 +78,7 @@ const App = () =>{
             <div className="landing_text">
               <h1 className="h1">Network with Blockchain</h1>
               <p className="p">Blockchain App User Interface</p>
-              <button className="landbtn btn_lg">
+              <button onClick={doSomething} className="landbtn btn_lg">
                 Get Started
               </button>
             </div>
