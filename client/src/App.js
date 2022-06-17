@@ -3,19 +3,27 @@ import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./getWeb3";
 import "./Css/landing.css";
 import landingpic from './img/land.png'
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const App = () =>{
+  const navigate = useNavigate();
+  const signIn = () => {
+        navigate('/SignIn');
+    }
   
-  if(window.ethereum){
+ if(window.ethereum){
     try {
-      // Do something 
+      
       window.ethereum.request({method:'eth_requestAccounts'})
       .then(res=>{
         // Return the address of the wallet
         console.log(res) 
+        }).catch(err => {
+          alert("we con't run the app properly if you don't connect your Account")
         })
     } catch(e) {
-      alert("we con't run the app properly if you don't connect your Account")
+      
       console.log(e);
     }
       
@@ -24,6 +32,7 @@ const App = () =>{
       
       alert("install metamask extension!!")
     }
+    
 
   return(
     <>
@@ -39,7 +48,7 @@ const App = () =>{
               <div className="nav-links"></div>
 
               <div className="nav_buttons">
-                <button className="landbtn">
+                <button onClick={signIn} className="landbtn">
                       Login
                 </button>
               </div>
