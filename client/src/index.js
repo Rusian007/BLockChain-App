@@ -9,6 +9,7 @@ import {
   Route,
 } from "react-router-dom";
 import SignIn from "./login"
+import Register from "./signup"
 
 
 ReactDOM.render(
@@ -17,6 +18,7 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/SignIn" element={<SignIn />} />
+      <Route path="/register" element={<Register />} />
     </Routes>
   </BrowserRouter>,
 

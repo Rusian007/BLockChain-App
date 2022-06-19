@@ -1,10 +1,13 @@
 import React from "react";
 import loginpic from './img/pic3.png';
 import './Css/login.css'
-
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
-
+  const navigate = useNavigate();
+  const signUp = () => {
+        navigate('/register');
+    }
 
   return (
     <>
@@ -59,7 +62,7 @@ export default function SignIn() {
                   <button className="btn bg_purple" type="submit">Login</button>
 
                   <p>Not Signed up yet ?</p>
-                  <button type="button" className="btn bg_purple">Sign Up</button>
+                  <button onClick={signUp} type="button" className="btn bg_purple">Sign Up</button>
                 </div>
 
               </form>
