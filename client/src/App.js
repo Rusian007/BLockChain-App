@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const App = () =>{
   const navigate = useNavigate();
+  let startTrac = false
 
   const signIn = () => {
         navigate('/SignIn');
@@ -15,6 +16,7 @@ const App = () =>{
 
   const doSomething = async() =>{
 
+    if(startTrac){
     const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
     const accounts = await web3.eth.getAccounts()
     const networkId = await web3.eth.net.getId();
@@ -26,7 +28,19 @@ const App = () =>{
           );
     await instance.methods.set(5).send({ from: accounts[0] }) //set number 5
     const res = await instance.methods.get().call() //get number 5
-    alert(`Your Number is : ${res}`)
+    alert(`Transaction is successful , Your Number is : ${res}`)
+    }
+    else{
+       window.ethereum.request({method:'eth_requestAccounts'})
+      .then(res=>{
+        // Return the address of the wallet
+        console.log(res) 
+        startTrac = true
+        }).catch(err => {
+          alert("we con't run the app properly if you don't connect your Account")
+          return;
+        })
+    }
   }
   
  if(window.ethereum){
@@ -36,6 +50,7 @@ const App = () =>{
       .then(res=>{
         // Return the address of the wallet
         console.log(res) 
+        startTrac = true
         }).catch(err => {
           alert("we con't run the app properly if you don't connect your Account")
         })

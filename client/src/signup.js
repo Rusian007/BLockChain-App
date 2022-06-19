@@ -3,15 +3,19 @@ import { useForm } from "react-hook-form";
 import Error from "./components/error";
 import signuppic from './img/pic2.png';
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 export default function Register(){
-  
+  const navigate = useNavigate();
   const { register, handleSubmit ,formState: { errors }} = useForm();
 
   const onSubmit = (data)=>{
     console.log(JSON.stringify(data))
     
   }
+  const signIn = () => {
+        navigate('/SignIn');
+    }
 
 
   return (
@@ -124,7 +128,7 @@ export default function Register(){
                 <button className="btn bg_purple" type="submit">Sign UP</button>
 
                 <p>Already have an account ?</p>
-                <button type="button" className="btn bg_purple">Login</button>
+                <button type="button" onClick={signIn} className="btn bg_purple">Login</button>
               </div>
 
             </form>
