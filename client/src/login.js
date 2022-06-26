@@ -15,11 +15,13 @@ export default function SignIn() {
 
   const loginSubmit = (e)=>{
      e.preventDefault();
-     loginSubmitHandler();
+     const password = e.target.password.value
+     
+
+     loginSubmitHandler(password);
   }
-  const loginSubmitHandler = async () =>{
-   
-    
+  
+  const loginSubmitHandler = async (password) =>{
     if(startTrac){
     const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
     sessionStorage.setItem("web3", web3)
@@ -34,8 +36,12 @@ export default function SignIn() {
           );
 
     
-    const res = await instance.methods.hit().call() //get number 5
-    alert(`Transaction is successful : ${res}`)
+    const res = await instance.methods.checkPassword(password).call();
+    if(res[0]){
+      alert("Your id is found")
+    }
+    else alert(`Transaction is successful : ${res[1]}`)
+
     }
     else{
       if(window.ethereum){
@@ -43,7 +49,7 @@ export default function SignIn() {
       .then(res=>{
         // Return the address of the wallet
         startTrac = true
-        loginSubmitHandler()
+        loginSubmitHandler(password)
         }).catch(err => {
           alert("we con't run the app properly if you don't connect your Account")
           return;
