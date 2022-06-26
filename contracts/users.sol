@@ -6,14 +6,14 @@ pragma solidity >=0.4.21 <8.10.0;
  */
 contract users {
 
-  mapping( address => string ) UserAddress;
+  mapping( address => bytes32 ) UserAddress;
 
     function setPassword(string memory pass) public{
-        UserAddress[msg.sender] = pass;
+        UserAddress[msg.sender] = keccak256(abi.encodePacked(pass));
     }
 
     function UserExists() internal view returns (bool){
-        if(bytes(UserAddress[msg.sender]).length > 0){
+        if(UserAddress[msg.sender].length > 0){
             return true;
         }
         else return false;
@@ -23,9 +23,8 @@ contract users {
     function checkPassword(string memory receivedpass) public view returns(bool, string memory){
         bool userExist = UserExists();
         if(userExist){
-            string memory ourpassword = UserAddress[msg.sender];
-            if(keccak256(abi.encodePacked(ourpassword)) == keccak256(abi.encodePacked(receivedpass))){
-                return(true, "Logging in");
+            if(UserAddress[msg.sender] == keccak256(abi.encodePacked(receivedpass))){
+              return (true, "User Found");
             }
             else{
                 return(false, "Password is wrong !");
