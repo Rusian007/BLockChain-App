@@ -7,15 +7,23 @@ import Web3 from 'web3';
 
 export default function SignIn() {
   const navigate = useNavigate();
+  let startTrac = false
 
   const signUp = () => {
         navigate('/register');
     }
-  const loginSubmit = async (e) =>{
-    e.preventDefault();
-    console.log('Your form has been submitted')
-    try {
-      const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
+
+  const loginSubmit = (e)=>{
+     e.preventDefault();
+     loginSubmitHandler();
+  }
+  const loginSubmitHandler = async () =>{
+   
+    
+    if(startTrac){
+    const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
+    sessionStorage.setItem("web3", web3)
+
     const accounts = await web3.eth.getAccounts()
     const networkId = await web3.eth.net.getId();
     const deployedNetwork = userContract.networks[networkId];
@@ -25,13 +33,23 @@ export default function SignIn() {
             deployedNetwork && deployedNetwork.address, //if there is a deployed network then get the address
           );
 
-    const res = await instance.methods.hit().call() 
-    alert(`We got the response: ${res}`)
-
-    } catch(e) {
-      // statements
-      alert("Check if metamask is connected")
-      console.log(e);
+    
+    const res = await instance.methods.hit().call() //get number 5
+    alert(`Transaction is successful : ${res}`)
+    }
+    else{
+      if(window.ethereum){
+        window.ethereum.request({method:'eth_requestAccounts'})
+      .then(res=>{
+        // Return the address of the wallet
+        startTrac = true
+        loginSubmitHandler()
+        }).catch(err => {
+          alert("we con't run the app properly if you don't connect your Account")
+          return;
+        })
+      } else alert("You need to install metamask")
+       
     }
     
     
@@ -70,16 +88,11 @@ export default function SignIn() {
              
              
                 <div className="inputs">
-                  <div className="field">
-                    <label>
-                      <input name="username" id="input-username-for-credentials-provider" type="text" placeholder=" " required autoComplete="off"/>
-                      <p>Username</p>
-                    </label>
-                  </div>
+                  
 
                   <div className="field">
                     <label>
-                      <input name="password" id="input-password-for-credentials-provider" type="password" placeholder=" "/>
+                      <input name="password" id="input-password-for-credentials-provider" type="password" required placeholder=" "/>
                       <p>Password</p>
                     </label>
                   </div>

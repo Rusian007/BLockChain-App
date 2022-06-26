@@ -8,16 +8,21 @@ import { useNavigate } from "react-router-dom";
 
 const App = () =>{
   const navigate = useNavigate();
-  let startTrac = false
+  
 
   const signIn = () => {
         navigate('/SignIn');
     }
+  const signUp = () => {
+        navigate('/register');
+    }
 
-  const doSomething = async() =>{
+  /*const doSomething = async() =>{
 
     if(startTrac){
     const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
+    sessionStorage.setItem("web3", web3)
+
     const accounts = await web3.eth.getAccounts()
     const networkId = await web3.eth.net.getId();
     const deployedNetwork = SimpleStorageContract.networks[networkId];
@@ -31,17 +36,23 @@ const App = () =>{
     alert(`Transaction is successful , Your Number is : ${res}`)
     }
     else{
-       window.ethereum.request({method:'eth_requestAccounts'})
+      if(window.ethereum){
+        window.ethereum.request({method:'eth_requestAccounts'})
       .then(res=>{
         // Return the address of the wallet
         console.log(res) 
         startTrac = true
+        doSomething()
         }).catch(err => {
           alert("we con't run the app properly if you don't connect your Account")
           return;
         })
+      } else alert("You need to install metamask")
+       
     }
-  }
+  } */
+
+  /*
   
  if(window.ethereum){
     try {
@@ -49,7 +60,7 @@ const App = () =>{
       window.ethereum.request({method:'eth_requestAccounts'})
       .then(res=>{
         // Return the address of the wallet
-        console.log(res) 
+        
         startTrac = true
         }).catch(err => {
           alert("we con't run the app properly if you don't connect your Account")
@@ -64,7 +75,7 @@ const App = () =>{
       
       alert("install metamask extension!!")
     }
-    
+    */
 
   return(
     <>
@@ -93,7 +104,7 @@ const App = () =>{
             <div className="landing_text">
               <h1 className="h1">Network with Blockchain</h1>
               <p className="p">Blockchain App User Interface</p>
-              <button onClick={doSomething} className="landbtn btn_lg">
+              <button onClick={signUp} className="landbtn btn_lg">
                 Get Started
               </button>
             </div>
