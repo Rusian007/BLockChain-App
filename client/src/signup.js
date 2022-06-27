@@ -2,25 +2,39 @@ import "./Css/signup.css"
 import { useForm } from "react-hook-form";
 import Error from "./components/error";
 import signuppic from './img/pic2.png';
-import React from 'react';
+import React ,{ useState }  from 'react';
 import { useNavigate } from "react-router-dom";
+import Web3 from 'web3';
+import userContract from "./contracts/users.json";
 
 export default function Register(){
   const navigate = useNavigate();
   const { register, handleSubmit ,formState: { errors }} = useForm();
+  const [isError, setError] = useState(false);
 
   const onSubmit = (data)=>{
-    console.log(JSON.stringify(data))
-    
+    const password = data.password;
+    const passwordRetype = data.password2;
+
+    if(password !== passwordRetype){
+      setError(true)
+    }
+    else {
+      setError(false)
+    }
+
   }
   const signIn = () => {
         navigate('/SignIn');
     }
+  const logger = () =>{
+    console.log('changed')
+  }
 
 
   return (
     <>
-    
+
     <div className="body">
   <div className="area" >
               <ul className="circles">
@@ -44,13 +58,13 @@ export default function Register(){
             <img src={signuppic} alt="Illustration" />
           </div>
 
-          <div className="form_div">
+          <div className="form_div_Signup">
             <h1>Sign Up</h1>
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="inputs">
 
-                <div className="field">
+                <div className="InputField">
                   <label>
                     <input type="text" placeholder=" " {...register("name",{required: true})}/>
                     <p>Name</p>
@@ -60,24 +74,12 @@ export default function Register(){
                  	<Error errmsg="You did not typed your name, did you?"/>
                  	)
                  : ""}
-                  	
+
                 </div>
 
-                <div className="field">
-                  <label>
-                    <input type="text" placeholder=" " {...register("username",{required: true})}/>
-                    <p>Username</p>
-                  </label>
-                  {
-                 errors.username && errors.username.type == "required"? (
-                 	<Error errmsg="What is your Username?"/>
-                 	)
-                 : ""}
+                
 
-                  
-                </div>
-
-                <div className="field">
+                <div className="InputField">
                   <label>
                     <input type="email" placeholder=" " {...register("email",{required: true})}/>
                     <p>Email</p>
@@ -87,10 +89,10 @@ export default function Register(){
                  	<Error errmsg="We need your Email... To send Emails 😁"/>
                  	)
                  : ""}
-                  
+
                 </div>
 
-                <div className="field">
+                <div className="InputField">
                   <label>
                     <input type="password" placeholder=" " {...register("password", {required: true, minLength: 6})}/>
                     <p>Password</p>
@@ -108,23 +110,25 @@ export default function Register(){
 
                    </div>
 
-                <div className="field">
+                <div className="InputField">
                   <label>
                     <input type="password" placeholder=" " required {...register("password2", {required:true})}/>
                     <p>Retype Password</p>
                   </label>
+
                  {
                  errors.password2 && errors.password2.type == "required"? (
                  	<Error errmsg="Retype please"/>
                  	)
                  : ""}
+                 {isError? <Error errmsg="Passwords don't match 😯"/> : ""}
 
                 </div>
 
               </div>
 
 
-              <div className="buttons_center">
+              <div className="buttons_center_form">
                 <button className="btn bg_purple" type="submit">Sign UP</button>
 
                 <p>Already have an account ?</p>

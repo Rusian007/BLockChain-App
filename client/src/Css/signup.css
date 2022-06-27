@@ -150,24 +150,24 @@
 .img {
   position: relative;
   right: 180px;
-  top: 60px;
+  top:40px;
   width: 70%;
 }
 img{
     width: 540px;
 }
 
-.form_div{
+.form_div_Signup{
   margin-left: -195px;
 
 }
-.form_div h1{
+.form_div_Signup h1{
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   margin-top: 15px;
 }
 .inputs{
-  margin-bottom: 55px;
+  margin-bottom: 20px;
 }
 
 
@@ -196,25 +196,25 @@ img{
 }
 
 
-.buttons_center{
+.buttons_center_form{
 
   text-align: center;
-
+  margin-top: 78px;
 }
-.buttons_center button{
+.buttons_center_form button{
   margin-bottom: 13px;
 }
-.buttons_center p{
+.buttons_center_form p{
   margin-bottom: 13px;
 }
 
-.field {
+.InputField {
     margin-bottom: 15px;
 }
-.field label {
+.InputField label {
   position: relative;
 }
-.field label input {
+.InputField label input {
 
   color: var(--bg);
   background: transparent;
@@ -233,11 +233,11 @@ img{
   transition: border-color 0.2s;
 }
 
-.field label input:focus {
+.InputField label input:focus {
   border-color: var(--bg);
 }
 
-.field label p {
+.InputField label p {
   color: white;
   font-size: 0.9rem;
   user-select: none;
@@ -248,8 +248,8 @@ img{
   padding: 0 0.4rem;
   pointer-events: none;
 }
-.field label input:focus + p,
-.field label input:not(:placeholder-shown) + p {
+.InputField label input:focus + p,
+.InputField label input:not(:placeholder-shown) + p {
 
   font-size: 0.9rem;
   color: applewhite;
@@ -260,7 +260,7 @@ img{
   transition: transform,
   opacity, .8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.field label input:not(:focus) + p {
+.InputField label input:not(:focus) + p {
 
   color: var(--primary);
 }
