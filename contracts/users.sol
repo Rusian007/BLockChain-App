@@ -6,7 +6,9 @@ pragma solidity >=0.4.21 <8.10.0;
  */
 contract users {
 
-  
+    bool private UserState;
+    string private Usermessage;
+
     struct UserInfo {
     string name;
     string email;
@@ -19,13 +21,13 @@ contract users {
     function setnewUser(string memory name, string memory email, string memory password) public{
         bool userExist = UserExists();
         if(userExist){
-            UserNotAdded();
+            setUserAddedorNot(false, "User Already Exists");
         }
         else{
         bytes32 pass = keccak256(abi.encodePacked(password));
         UserInfo memory newUser = UserInfo( name, email, pass);
         UserAddress[msg.sender] = newUser;
-        UserAdded();
+        setUserAddedorNot(true, "User Added Successfully");
         }
     }
 
@@ -43,11 +45,13 @@ contract users {
             
     }
 
-    function UserAdded() internal pure returns(bool,string memory){
-        return (true, "User Added");
+    function setUserAddedorNot(bool Userstatus, string memory message) internal {
+        UserState = Userstatus;
+        Usermessage = message;
     }
-    function UserNotAdded() internal pure returns(bool, string memory){
-        return (false, "User Already Exists!");
+
+    function UserAddedorNot() public view returns(bool,string memory){
+        return (UserState, Usermessage);
     }
     
     function checkPassword(string memory receivedpass) public view returns(bool, string memory){

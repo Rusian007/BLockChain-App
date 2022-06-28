@@ -14,16 +14,75 @@ export default function Register(){
 
   const onSubmit = (data)=>{
     const password = data.password;
+    const name = data.name;
+    const email = data.email;
     const passwordRetype = data.password2;
 
     if(password !== passwordRetype){
       setError(true)
-    }
-    else {
-      setError(false)
+      return
     }
 
+    SigninSubmitHandler(name,email,password);
+
   }
+
+  const SigninSubmitHandler = async (name,email,password) =>{
+
+    const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
+    let accounts = null
+    try {
+      accounts = await web3.eth.getAccounts()
+    } catch(e) {
+      // statements
+      console.log(e);
+    }
+    
+
+    if(accounts.length !== 0){
+    
+    sessionStorage.setItem("web3", web3)
+
+    const networkId = await web3.eth.net.getId();
+    const deployedNetwork = userContract.networks[networkId];
+
+    const instance = new web3.eth.Contract(
+            userContract.abi,
+            deployedNetwork && deployedNetwork.address, //if there is a deployed network then get the address
+          );
+    try {
+      await instance.methods.setnewUser(name,email,password).send({ from: accounts[0] }) //set number 5
+      const res = await instance.methods.UserAddedorNot().call()
+
+      if(res[0]){
+        alert(res[1])
+      } else {
+        alert(res[1])
+      }
+
+    } catch(e) {
+      // statements
+      alert("YOU Cancelled the Transaction !")
+    }
+    
+    }
+
+    else {
+      if(window.ethereum){
+        window.ethereum.request({method:'eth_requestAccounts'})
+      .then(res=>{
+        // Return the address of the wallet
+        
+        SigninSubmitHandler(name,email,password)
+        }).catch(err => {
+          alert("we con't run the app properly if you don't connect your Account")
+          return;
+        })
+      } else alert("You need to install metamask")
+       
+    }
+  }
+
   const signIn = () => {
         navigate('/SignIn');
     }
