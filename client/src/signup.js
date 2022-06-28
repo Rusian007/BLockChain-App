@@ -99,7 +99,7 @@ export default function Register(){
                   </label>
                   {
                  errors.password && errors.password.type == "required"? (
-                 	<Error errmsg="You need a password, for extra protection🤩"/>
+                 	<Error errmsg="You need a password, for extra protection 😁"/>
                  	)
                  : ""}
                  {
