@@ -1,5 +1,5 @@
 import React from "react";
-import loginpic from './img/pic3.png';
+import loginpic from './img/pic3.svg';
 import userContract from "./contracts/users.json";
 import './Css/login.css'
 import { useNavigate } from "react-router-dom";

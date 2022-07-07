@@ -1,7 +1,7 @@
 import "./Css/signup.css"
 import { useForm } from "react-hook-form";
 import Error from "./components/error";
-import signuppic from './img/pic2.png';
+import signuppic from './img/pic2.svg';
 import React ,{ useState }  from 'react';
 import { useNavigate } from "react-router-dom";
 import Web3 from 'web3';
