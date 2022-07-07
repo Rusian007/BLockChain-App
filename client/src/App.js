@@ -102,15 +102,15 @@ const App = () =>{
         <main className="main">
           <section className="landing">
             <div className="landing_text">
-              <h1 className="h1">Network with Blockchain</h1>
-              <p className="p">Blockchain App User Interface</p>
+              <h1 className="h1">Blockchain Cloud</h1>
+              <p className="p">Blockchain Cloud service</p>
               <button onClick={signUp} className="landbtn btn_lg">
                 Get Started
               </button>
             </div>
 
             <div className="landing_image">
-            <img src={landingpic} alt="Illustration" />
+            <img style={{width : "800px"}} src={landingpic} alt="Illustration" />
             
             </div>
           </section>
