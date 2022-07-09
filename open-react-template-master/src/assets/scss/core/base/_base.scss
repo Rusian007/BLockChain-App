@@ -1,0 +1,21 @@
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after { 
+	box-sizing: inherit;
+}
+
+body {
+	background: color-bg(body); /* backgroud color*/
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}
+
+
+
+
+
+
