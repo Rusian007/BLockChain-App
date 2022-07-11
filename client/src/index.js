@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import SignIn from "./login"
 import Register from "./signup"
+import Home from "./routes/home"
 
 
 ReactDOM.render(
@@ -19,6 +20,7 @@ ReactDOM.render(
       <Route path="/" element={<App />} />
       <Route path="/SignIn" element={<SignIn />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/home" element={<Home />} />
     </Routes>
   </BrowserRouter>,
 

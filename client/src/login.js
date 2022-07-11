@@ -61,6 +61,48 @@ export default function SignIn() {
     
   }
 
+  // Styles
+  const styles = {
+
+  section: {
+  padding:"0px 30px",
+  backgroundColor: "white",
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  borderRadius: "50px",
+  width: "850px",
+  height: "550px",
+},
+  container: {
+  color: "var(--primary)",
+  display:"flex",
+  justifyContent:"center",
+  alignItems: "center",
+  padding: "10px 25px",
+},
+  img: {
+  position: "relative",
+  right: "130px",
+  top: "20px",
+  width: "100%",
+},
+  form_div: {
+  marginLeft: "-200px"
+},
+
+  inputs: {
+  marginBottom: "160px"
+},
+h1: {
+  marginTop: "40px",
+  textAlign: "center",
+  marginBottom: "60px"
+}
+
+  }
+
   return (
     <>
 
@@ -80,20 +122,20 @@ export default function SignIn() {
                 </ul>
         </div >
 
-        <section className="section">
-          <div className="container">
+        <section style={styles.section}>
+          <div style={styles.container}>
 
-            <div className="img">
-              <img src={loginpic} style={{width :"520px"}} alt="Illustration" />
+            <div style={styles.img}>
+              <img src={loginpic} style={{width :"530px"}} alt="Illustration" />
             </div>
 
-            <div className="form_div">
-              <h1>Login</h1>
+            <div style={styles.form_div}>
+              <h1 style={styles.h1}>Login</h1>
 
               <form onSubmit={loginSubmit}>
              
              
-                <div className="inputs">
+                <div style={styles.inputs}>
                   
 
                   <div className="field">

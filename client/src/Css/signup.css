@@ -129,46 +129,7 @@
     }
 
 }
-.section{
-  background-color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50px;
-  width: 950px;
-  min-height: 710px;
-}
-.container{
-  color: var(--primary);
-  display:flex;
-  justify-content:center;
-  align-items: center;
-  padding: 20px 10px;
-}
 
-.img {
-  position: relative;
-  right: 180px;
-  top:40px;
-  width: 70%;
-}
-img{
-    width: 540px;
-}
-
-.form_div_Signup{
-  margin-left: -195px;
-
-}
-.form_div_Signup h1{
-  text-align: center;
-  margin-bottom: 20px;
-  margin-top: 15px;
-}
-.inputs{
-  margin-bottom: 20px;
-}
 
 
 

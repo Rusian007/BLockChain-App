@@ -90,6 +90,46 @@ export default function Register(){
     console.log('changed')
   }
 
+  const styles = {
+    section:{
+  backgroundColor: "white",
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  borderRadius: "50px",
+  width: "950px",
+  minHeight: "710px"
+},
+  container: {
+  color: "var(--primary)",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "20px 10px"
+},
+
+  img : {
+  position: "relative",
+  right: "180px",
+  top:"40px",
+  width: "70%"
+},
+
+  form_div_Signup: {
+  marginLeft: "-195px"
+
+},
+  h1: {
+  textAlign: "center",
+  marginBottom: "25px",
+  marginTop: "25px"
+},
+  inputs: {
+  marginBottom: "99px"
+}
+  }
+
 
   return (
     <>
@@ -110,18 +150,18 @@ export default function Register(){
               </ul>
       </div >
 
-      <section className="section">
-        <div className="container">
+      <section style={styles.section}>
+        <div style={styles.container}>
 
-          <div className="img">
-            <img src={signuppic} alt="Illustration" />
+          <div style={styles.img}>
+            <img style={{width: "540px"}} src={signuppic} alt="Illustration" />
           </div>
 
-          <div className="form_div_Signup">
-            <h1>Sign Up</h1>
+          <div style={styles.form_div_Signup}>
+            <h1 style={styles.h1}>Sign Up</h1>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="inputs">
+              <div style={styles.inputs}>
 
                 <div className="InputField">
                   <label>
