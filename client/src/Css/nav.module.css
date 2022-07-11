@@ -1,0 +1,39 @@
+:root{
+    --btn_bg: rgb(96, 96, 255);
+  }
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+.btn:hover{
+    opacity: 0.8;
+}
+.btn_group{
+    margin: 0px;
+}
+.btn_group div{
+    margin: 0px 0px 0px 30px;
+}
+.btn_group div button{
+    background: var(--btn_bg);
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    color: white;
+    transition: 0.4s;
+    font-weight: bold;
+}
+
+.Logo{
+    width: 100px;
+}
+.nav{
+    padding: 10px 0px;
+}
+.bg_none{
+    color: var(--btn_bg) !important;
+    background-color:transparent !important;
+}
+.bg_none:hover{
+    color:rgb(66, 66, 255) !important;
+}

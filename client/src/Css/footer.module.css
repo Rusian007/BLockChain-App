@@ -1,0 +1,20 @@
+.footer{
+    padding: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.links{
+    display: flex;
+    justify-content: space-between;
+}
+.links a{
+    margin-right: 30px;
+    color: rgb(187, 187, 187);
+}
+.media{
+    display: flex;
+    justify-content: space-between;
+}
+.media a{
+    margin-left: 30px;
+}
