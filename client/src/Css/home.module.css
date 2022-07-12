@@ -4,3 +4,14 @@
     height: 100vh;
     overflow: hidden;
 }
+.main_container{
+    overflow: auto;
+    height: 78vh;
+    color: white;
+}
+
+@media (max-width: 900px) {    
+    .outerdiv {
+        padding: 10px 20px; 
+    }
+  }
