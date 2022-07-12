@@ -3,9 +3,8 @@ import styles from "../Css/nav.module.css";
 import { ImCross } from "react-icons/im";
 import { CgOptions } from "react-icons/cg";
 import "react-toastify/dist/ReactToastify.css";
-import { toast, ToastContainer } from "react-toastify";
 
-export default function TopNav() {
+export default function TopNav({getTheFile}) {
   const [toggle, setToggle] = useState(false);
   const inputref = useRef(null);
   const imgref = useRef(null);
@@ -24,42 +23,12 @@ export default function TopNav() {
     inputEle.click();
   };
 
-  const GetFIles = e => {
-    let thefile = e.target.files[0];
+  
 
-    const reader = new FileReader();
-
-    reader.readAsDataURL(thefile);
-
-    console.log(reader);
-    showSuccess();
-  };
-
-  const showSuccess = () => {
-    toast.success("File Uploaded for Processing 😄 ", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined
-    });
-  };
+  
 
   return (
     <>
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
 
       <div className={`${styles.menu} ${toggle ? styles.in_animate : ""}`}>
         <div style={{ textAlign: "end" }}>
@@ -77,7 +46,7 @@ export default function TopNav() {
             style={{ display: "none" }}
             type="file"
             accept=".png,.jpg,.pdf,.docx,.ppt,.svg"
-            onChange={GetFIles}
+            onChange={getTheFile}
           />
         </div>
 
@@ -109,7 +78,7 @@ export default function TopNav() {
               style={{ display: "none" }}
               type="file"
               accept=".png,.jpg,.pdf,.docx,.ppt,.svg"
-              onChange={GetFIles}
+              onChange={getTheFile}
             />
           </div>
 

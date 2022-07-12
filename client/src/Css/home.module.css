@@ -9,6 +9,9 @@
     height: 78vh;
     color: white;
 }
+.hide {
+    display: none;
+}
 
 @media (max-width: 900px) {    
     .outerdiv {

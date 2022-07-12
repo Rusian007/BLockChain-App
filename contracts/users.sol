@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.21 <8.10.0;
+pragma experimental ABIEncoderV2;
+import "./HashFile.sol";
 
 /**
  * The Users contract saves users information. With hashing.
@@ -13,31 +15,33 @@ contract users {
     string name;
     string email;
     bytes32 password;
+    HashFile hf;
     }
 
     mapping( address => UserInfo ) UserAddress;
 
 
-    function setnewUser(string memory name, string memory email, string memory password) public{
-        bool userExist = UserExists();
+    function setnewUser(string memory name, string memory email, string memory password, address theUserAddress) public{
+        bool userExist = UserExists(theUserAddress);
         if(userExist){
             setUserAddedorNot(false, "User Already Exists");
         }
         else{
         bytes32 pass = keccak256(abi.encodePacked(password));
-        UserInfo memory newUser = UserInfo( name, email, pass);
-        UserAddress[msg.sender] = newUser;
+        HashFile _hf = new HashFile();
+        UserInfo memory newUser = UserInfo( name, email, pass, _hf);
+        UserAddress[theUserAddress] = newUser;
         setUserAddedorNot(true, "User Added Successfully");
         }
     }
 
-    function getTheUser() public view returns (string memory, string memory){
-        UserInfo memory theUser = UserAddress[msg.sender];
+    function getTheUser(address theUserAddress) public view returns (string memory, string memory){
+        UserInfo memory theUser = UserAddress[theUserAddress];
         return (theUser.name, theUser.email);
     }
 
-    function UserExists() internal view returns (bool) {
-        string memory theName= UserAddress[msg.sender].name;
+    function UserExists(address theUserAddress) internal view returns (bool) {
+        string memory theName= UserAddress[theUserAddress].name;
         if(bytes(theName).length > 0){
             return true;
         }
@@ -54,10 +58,10 @@ contract users {
         return (UserState, Usermessage);
     }
     
-    function checkPassword(string memory receivedpass) public view returns(bool, string memory){
-        bool userExist = UserExists();
+    function checkPassword(string memory receivedpass, address theUserAddress) public view returns(bool, string memory){
+        bool userExist = UserExists(theUserAddress);
         if(userExist){
-            bytes32 password = UserAddress[msg.sender].password;
+            bytes32 password = UserAddress[theUserAddress].password;
             if(password == keccak256(abi.encodePacked(receivedpass))){
               return (true, "User Found");
             }
@@ -68,6 +72,16 @@ contract users {
             return (false, "User Does not exist 😱");
         }
     }
-        
+
+    function HashStore(address theUserAddress, string memory theHash) public {
+        HashFile hashObj = UserAddress[theUserAddress].hf;
+        hashObj.store(theHash);
+    }
+
+    function HashSetReturn(address theUserAddress) public view returns(string[] memory){
+        HashFile hashObj = UserAddress[theUserAddress].hf;
+        return hashObj.retrieve();
+
+    }
 
 }
