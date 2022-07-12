@@ -4,6 +4,7 @@ import userContract from "./contracts/users.json";
 import './Css/login.css'
 import { useNavigate } from "react-router-dom";
 import Web3 from 'web3';
+import { toast, ToastContainer } from "react-toastify";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -23,11 +24,14 @@ export default function SignIn() {
   
   const loginSubmitHandler = async (password) =>{
     if(startTrac){
+    
     const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
-    sessionStorage.setItem("web3", web3)
+    let accounts = await web3.eth.getAccounts()
+    accounts = accounts[0]
 
-    const accounts = await web3.eth.getAccounts()
-    const networkId = await web3.eth.net.getId();
+    let networkId = await web3.eth.net.getId();
+    
+
     const deployedNetwork = userContract.networks[networkId];
 
     const instance = new web3.eth.Contract(
@@ -36,11 +40,18 @@ export default function SignIn() {
           );
 
     
-    const res = await instance.methods.checkPassword(password).call();
+    const res = await instance.methods.checkPassword(password,accounts).call();
+    
     if(res[0]){
-      alert("Your id is found")
+      showSuccess(res[1])
+      sessionStorage.setItem("accounts", accounts)
+      setTimeout(function(){ navigate('/home'); }, 4000);
+      
     }
-    else alert(`Transaction is successful : ${res[1]}`)
+    else {
+      
+      showError(res[1])
+    }
 
     }
     else{
@@ -59,6 +70,30 @@ export default function SignIn() {
     }
     
     
+  }
+
+  const showError = (msg) => {
+    toast.error(msg, {
+    position: "top-center",
+    autoClose: 3500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+});
+  };
+
+  const showSuccess =(msg)=>{
+    toast.success(msg, {
+    position: "top-center",
+    autoClose: 3500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    });
   }
 
   // Styles
@@ -105,6 +140,18 @@ h1: {
 
   return (
     <>
+    <ToastContainer
+    toastStyle={{ backgroundColor: "black" , color: "white"}}
+    position="top-center"
+    autoClose={3500}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    />
 
     <div className="body">
     <div className="area" >

@@ -42,8 +42,12 @@ export default function Register(){
     if(accounts.length !== 0){
     
     sessionStorage.setItem("web3", web3)
+    sessionStorage.setItem("accounts", accounts)
 
     const networkId = await web3.eth.net.getId();
+    sessionStorage.setItem("networkId", networkId)
+
+    
     const deployedNetwork = userContract.networks[networkId];
 
     const instance = new web3.eth.Contract(
@@ -51,7 +55,7 @@ export default function Register(){
             deployedNetwork && deployedNetwork.address, //if there is a deployed network then get the address
           );
     try {
-      await instance.methods.setnewUser(name,email,password).send({ from: accounts[0] }) //set number 5
+      await instance.methods.setnewUser(name,email,password,accounts[0] ).send({ from: accounts[0] }) 
       const res = await instance.methods.UserAddedorNot().call()
 
       if(res[0]){
@@ -62,6 +66,7 @@ export default function Register(){
 
     } catch(e) {
       // statements
+      console.log(e)
       alert("YOU Cancelled the Transaction !")
     }
     
