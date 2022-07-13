@@ -2,7 +2,7 @@ import "./Css/signup.css"
 import { useForm } from "react-hook-form";
 import Error from "./components/error";
 import signuppic from './img/pic2.svg';
-import React ,{ useState }  from 'react';
+import React ,{ useState,useEffect }  from 'react';
 import { useNavigate } from "react-router-dom";
 import Web3 from 'web3';
 import userContract from "./contracts/users.json";
@@ -11,6 +11,11 @@ export default function Register(){
   const navigate = useNavigate();
   const { register, handleSubmit ,formState: { errors }} = useForm();
   const [isError, setError] = useState(false);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title = `SIGNUP | Cloud`;
+  }, [1]);
 
   const onSubmit = (data)=>{
     const password = data.password;
@@ -60,6 +65,7 @@ export default function Register(){
 
       if(res[0]){
         alert(res[1])
+        navigate('/SignIn')
       } else {
         alert(res[1])
       }

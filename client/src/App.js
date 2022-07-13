@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import Web3 from 'web3';
 import "./Css/landing.css";
@@ -16,6 +16,11 @@ const App = () =>{
   const signUp = () => {
         navigate('/register');
     }
+
+    useEffect(() => {
+    // Update the document title using the browser API
+    document.title = `LANDING | Cloud`;
+  }, [1]);
 
   /*const doSomething = async() =>{
 

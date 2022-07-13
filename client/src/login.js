@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import loginpic from './img/pic3.svg';
 import userContract from "./contracts/users.json";
 import './Css/login.css'
@@ -9,6 +9,11 @@ import { toast, ToastContainer } from "react-toastify";
 export default function SignIn() {
   const navigate = useNavigate();
   let startTrac = false
+  
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title = `LOGIN | Cloud`;
+  }, [1]);
 
   const signUp = () => {
         navigate('/register');
@@ -45,6 +50,7 @@ export default function SignIn() {
     if(res[0]){
       showSuccess(res[1])
       sessionStorage.setItem("accounts", accounts)
+      sessionStorage.setItem("networkId", networkId)
       setTimeout(function(){ navigate('/home'); }, 4000);
       
     }

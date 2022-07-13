@@ -1,4 +1,4 @@
-import React, { useState,useRef } from "react";
+import React, { useState,useRef,useEffect } from "react";
 import TopNav from "../components/nav";
 import Footer from "../components/footer";
 import styles from '../Css/home.module.css';
@@ -12,7 +12,24 @@ const Home = () => {
   let account = sessionStorage.getItem("accounts")
   const client = create('https://ipfs.infura.io:5001/api/v0');
   const [file, setFile] = useState(null);
+  const [urls , setUrls] = useState(null);
   let btnref = useRef(null);
+  let web3 = null,networkId = sessionStorage.getItem("networkId"),instance=null
+
+  if(account){
+  web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
+  const deployedNetwork = userContract.networks[networkId];
+  instance = new web3.eth.Contract(
+            userContract.abi,
+            deployedNetwork && deployedNetwork.address, //if there is a deployed network then get the address
+          );
+  }
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title = `HOME | Cloud`;
+    ReturnHash()
+  }, [1]);
 
   const GetFIles = (e) => {
 
@@ -34,12 +51,22 @@ const Home = () => {
   };
   const UploadFile = async()=>{
     
-    console.log(file)
     const added = await client.add(file)
-    console.log(added)
+    
 
     // added.path has the string, Store the string here
     // ############ //
+    // https://ipfs.io/ipfs/<CID>
+
+    
+    await instance.methods.HashStore(account, added.path).send({ from: account })
+    ReturnHash()
+    
+  }
+
+  const ReturnHash =async()=>{
+    const res = await instance.methods.HashSetReturn(account).call()
+    setUrls(res)
   }
 
   const showSuccess = (msg) => {
@@ -58,6 +85,7 @@ const Home = () => {
     return (    
   <section className={styles.outerdiv}>
   <button className={styles.hide} ref={btnref} onClick={UploadFile} >Click TO State</button>
+  <button onClick={ReturnHash}> me ! </button>
   <ToastContainer
         position="top-center"
         autoClose={3000}
@@ -73,7 +101,13 @@ const Home = () => {
       <TopNav getTheFile={GetFIles} />
 
         <div className={styles.main_container}>
-          
+
+          {urls ? urls.map((element, index)=> {
+              return (
+                <div key={index}> box </div>
+                )
+            }
+          ):""}
         </div>
 
       <Footer />
