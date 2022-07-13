@@ -5,13 +5,76 @@
     overflow: hidden;
 }
 .main_container{
+    padding: 15px;
     overflow: auto;
     height: 78vh;
     color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 .hide {
     display: none;
 }
+.card{
+    width: 260px ;
+    height: 260px;
+    border-radius: 15px;
+    background: rgb(54, 54, 54);
+}
+.card_container{
+    text-align: start;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+.head{
+    padding: 20px;
+    margin-bottom: 30px;
+}
+.head h2{
+    margin-bottom: 5px;
+}
+.subType span{
+    padding: 5px 12px;
+    background: rgb(39, 189, 39);
+    border-radius: 40px;
+    font-size: 12px;
+}
+.btn_div{
+    display: flex;
+}
+.btn_div button{
+    border: none;
+    outline: none;
+    background: none;
+    padding: 40px 50px;
+    font-size: 30px;
+    color: white;
+    transition: 0.5s;
+}
+
+.bg_blue{
+    color:rgb(71, 99, 255) !important;
+    background: rgb(54, 54, 54) !important;
+    border-radius: 0 0 0px 15px !important;
+    
+}
+.bg_blue:hover{
+    background: rgb(71, 99, 255) !important;
+    color:white !important;
+}
+
+.bg_red{
+    color:rgb(255, 63, 63) !important;
+    background: rgb(54, 54, 54) !important;
+    border-radius: 0 0 15px 0px !important;
+}
+.bg_red:hover{
+    background: rgb(255, 63, 63) !important;
+    color: white !important;
+}
+
 
 @media (max-width: 900px) {    
     .outerdiv {
