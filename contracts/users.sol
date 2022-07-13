@@ -73,15 +73,15 @@ contract users {
         }
     }
 
-    function HashStore(address theUserAddress, string memory theHash) public {
+    function HashStore(address theUserAddress, string memory theHash, string memory thename, string memory thetype ) public {
         HashFile hashObj = UserAddress[theUserAddress].hf;
-        hashObj.store(theHash);
+        hashObj.store(theHash, thename, thetype);
     }
 
-    function HashSetReturn(address theUserAddress) public view returns(string[] memory){
+    function HashSetReturn(address theUserAddress) public view returns(HashFile.HashStruct[] memory) {
         HashFile hashObj = UserAddress[theUserAddress].hf;
-        return hashObj.retrieve();
-
+        HashFile.HashStruct[] memory obj = hashObj.retrieve();
+        return obj;
     }
 
 }
