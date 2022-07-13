@@ -3,6 +3,7 @@ import styles from "../Css/nav.module.css";
 import { ImCross } from "react-icons/im";
 import { CgOptions } from "react-icons/cg";
 import "react-toastify/dist/ReactToastify.css";
+import logo from '../img/logo.png';
 
 export default function TopNav({getTheFile}) {
   const [toggle, setToggle] = useState(false);
@@ -63,7 +64,7 @@ export default function TopNav({getTheFile}) {
         <div>
           <img
             className={styles.Logo}
-            src="https://cdn.tutsplus.com/gamedev/uploads/legacy/043_freeShmupSprites/Free_Shmup_Sprites_Boss_Battle.jpg"
+            src={logo}
             alt="App Logo"
           />
         </div>

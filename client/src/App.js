@@ -3,6 +3,7 @@ import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import Web3 from 'web3';
 import "./Css/landing.css";
 import landingpic from './img/land.png'
+import logoB from './img/logoB.png'
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -89,7 +90,7 @@ const App = () =>{
           <div className="mycontainer flex_between">
             <div className="logo">
               <a href="#">
-                <img src="" alt="LOGO" />
+                <img style={{width : "120px", height: "120px"}} src={logoB} alt="LOGO" />
               </a>
             </div>
             <nav className="main_navgation flex_between">

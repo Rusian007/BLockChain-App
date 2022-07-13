@@ -9,11 +9,15 @@ import { create } from "ipfs-http-client";
 import { toast, ToastContainer } from "react-toastify";
 import { FiDownload } from "react-icons/fi";
 import { FiLink } from "react-icons/fi";
+import copy from "copy-to-clipboard";
+
 
 const Home = () => {
   let account = sessionStorage.getItem("accounts");
   const client = create("https://ipfs.infura.io:5001/api/v0");
   const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState(null);
+  const [fileType, setFileType] = useState(null);
   const [urls, setUrls] = useState(null);
   let btnref = useRef(null);
   let web3 = null,
@@ -38,6 +42,11 @@ const Home = () => {
   const GetFIles = e => {
     const reader = new FileReader();
     let thefile = reader.readAsArrayBuffer(e.target.files[0]);
+    let thename = e.target.files[0].name
+    let theType = thename.split('.').pop();
+    console.log(theType)
+    setFileName(thename)
+    setFileType(theType)
 
     reader.onloadend = () => {
       thefile = Buffer(reader.result);
@@ -59,9 +68,10 @@ const Home = () => {
     // https://ipfs.io/ipfs/<CID>
 
     await instance.methods
-      .HashStore(account, added.path)
+      .HashStore(account, added.path, fileName, fileType)
       .send({ from: account });
     ReturnHash();
+    
   };
 
   const ReturnHash = async () => {
@@ -101,7 +111,7 @@ const Home = () => {
         />
 
         <TopNav getTheFile={GetFIles} />
-
+.FileHash
         <div className={styles.main_container}>
           {urls
             ? urls.map((element, index) => {
@@ -111,17 +121,21 @@ const Home = () => {
 
                       <div className={styles.head}>
 
-                        <h2>File Name Here</h2>
+                        <h2>{element.FileName}</h2>
 
                         <div className={styles.subType}>
-                          <span> File Type </span>
+                          <span> {element.FileType} </span>
                         </div>
 
                       </div>
 
                       <div className={styles.btn_div}>
                         <button className={styles.bg_blue}><FiDownload /></button>
-                        <button className={styles.bg_red}><FiLink /></button>
+                        <button onClick={()=> {
+                          let url = `https://ipfs.io/ipfs/${element.FileHash}`;
+                          copy(url);
+                          showSuccess("Link Copied")
+                        }} className={styles.bg_red}><FiLink /></button>
                       </div>
 
                     </div>
