@@ -36,7 +36,9 @@ const Home = () => {
   useEffect(() => {
     // Update the document title using the browser API
     document.title = `HOME | Cloud`;
+    if (account) {
     ReturnHash();
+  }
   }, [1]);
 
   const GetFIles = e => {
@@ -44,9 +46,14 @@ const Home = () => {
     let thefile = reader.readAsArrayBuffer(e.target.files[0]);
     let thename = e.target.files[0].name
     let theType = thename.split('.').pop();
-    console.log(theType)
+
+    if(theType === "png" || theType === "jpg" || theType === "pdf" || theType === "txt" || theType === "svg"){
+      
+    
+    
     setFileName(thename)
     setFileType(theType)
+    console.log(thename)
 
     reader.onloadend = () => {
       thefile = Buffer(reader.result);
@@ -57,6 +64,11 @@ const Home = () => {
     showSuccess("File Uploaded for Processing 😄");
 
     return;
+  }
+    else{
+      showError("This Type of File is not allowed :(")
+      return
+    }
 
     //
   };
@@ -79,10 +91,22 @@ const Home = () => {
     setUrls(res);
   };
 
+  const showError = msg =>{
+    toast.error(msg, {
+    position: "top-center",
+    autoClose: 2500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+});
+  }
+
   const showSuccess = msg => {
     toast.success(msg, {
       position: "top-center",
-      autoClose: 3000,
+      autoClose: 2500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -100,7 +124,7 @@ const Home = () => {
 
         <ToastContainer
           position="top-center"
-          autoClose={3000}
+          autoClose={2500}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
@@ -111,7 +135,7 @@ const Home = () => {
         />
 
         <TopNav getTheFile={GetFIles} />
-.FileHash
+
         <div className={styles.main_container}>
           {urls
             ? urls.map((element, index) => {
@@ -130,7 +154,11 @@ const Home = () => {
                       </div>
 
                       <div className={styles.btn_div}>
+
+                        <a href={`https://ipfs.io/ipfs/${element.FileHash}`} download={element.FileName}>
                         <button className={styles.bg_blue}><FiDownload /></button>
+                        </a>
+
                         <button onClick={()=> {
                           let url = `https://ipfs.io/ipfs/${element.FileHash}`;
                           copy(url);

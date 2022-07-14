@@ -46,7 +46,7 @@ export default function TopNav({getTheFile}) {
             ref={inputref}
             style={{ display: "none" }}
             type="file"
-            accept=".png,.jpg,.pdf,.docx,.ppt,.svg"
+            accept=".png,.jpg,.pdf,.txt,.svg, text/css, text/html"
             onChange={getTheFile}
           />
         </div>
