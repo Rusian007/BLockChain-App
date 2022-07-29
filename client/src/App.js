@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import Web3 from 'web3';
 import "./Css/landing.css";
@@ -7,18 +7,18 @@ import logoB from './img/logoB.png'
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const App = () =>{
+const App = () => {
   const navigate = useNavigate();
-  
+
 
   const signIn = () => {
-        navigate('/SignIn');
-    }
+    navigate('/SignIn');
+  }
   const signUp = () => {
-        navigate('/register');
-    }
+    navigate('/register');
+  }
 
-    useEffect(() => {
+  useEffect(() => {
     // Update the document title using the browser API
     document.title = `LANDING | Cloud`;
   }, [1]);
@@ -83,14 +83,14 @@ const App = () =>{
     }
     */
 
-  return(
+  return (
     <>
-    <section className="structure">
+      <section className="structure">
         <header className="heading">
           <div className="mycontainer flex_between">
             <div className="logo">
               <a href="#">
-                <img style={{width : "120px", height: "120px"}} src={logoB} alt="LOGO" />
+                <img style={{ width: "120px", height: "120px" }} src={logoB} alt="LOGO" />
               </a>
             </div>
             <nav className="main_navgation flex_between">
@@ -98,7 +98,7 @@ const App = () =>{
 
               <div className="nav_buttons">
                 <button onClick={signIn} className="landbtn">
-                      Login
+                  Login
                 </button>
               </div>
             </nav>
@@ -116,15 +116,15 @@ const App = () =>{
             </div>
 
             <div className="landing_image">
-            <img style={{width : "800px"}} src={landingpic} alt="Illustration" />
-            
+              <img style={{ width: "800px" }} src={landingpic} alt="Illustration" />
+
             </div>
           </section>
         </main>
       </section>
-      </>
+    </>
 
-    )
+  )
 }
 
 export default App;
