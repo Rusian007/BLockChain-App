@@ -1,7 +1,7 @@
 
 
 :root{
-    --btn_bg: rgb(96, 96, 255);
+    --btn_bg: #F5be01;/*rgb(96, 96, 255)*/
   }
 .flex{
     display: flex;
@@ -38,7 +38,7 @@
     background-color:transparent !important;
 }
 .bg_none:hover{
-    color:rgb(66, 66, 255) !important;
+    color:#495172 !important; /*rgb(66, 66, 255)*/
 }
 .hidden{
     display: none;
