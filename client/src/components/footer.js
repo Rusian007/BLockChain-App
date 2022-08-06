@@ -15,8 +15,8 @@ export default function Footer (){
                 </div>
 
                 <div className={styles.media}>
-                    <a href="#">< FaFacebookF style={{color:"rgb(96, 96, 255)"}}/></a>
-                    <a href="#"> <FaTwitter style={{color:"rgb(96, 96, 255)"}} /> </a>
+                    <a href="#">< FaFacebookF style={{color:'#F5be01',height: 'auto'}}/></a> {/*color:"rgb(96, 96, 255)"*/}
+                    <a href="#"> <FaTwitter style={{color:"#F5be01", height: 'auto'}} /></a> {/*color:"rgb(96, 96, 255)"*/}
                 </div>
             </div>
 		</>
