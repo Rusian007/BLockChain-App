@@ -9,7 +9,7 @@
 }
 .links a{
     margin-right: 30px;
-    color: rgb(187, 187, 187);
+    color:#F5be01; /*rgb(187, 187, 187)*/
 }
 .media{
     display: flex;
