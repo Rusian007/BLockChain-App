@@ -3,6 +3,7 @@
     background: rgb(24, 24, 24);
     height: 100vh;
     overflow: hidden;
+    background-color:#687aa8;
 }
 .main_container{
     padding: 15px;
