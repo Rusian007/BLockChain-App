@@ -91,6 +91,33 @@ const Home = () => {
     setUrls(res);
   };
 
+  const DownloadFile =(FileName, FileHash, FileType) =>{
+    //console.log(FileHash);
+    console.log("Function called");
+    var xhr = new XMLHttpRequest();
+
+    //send feedBack
+    showSuccess("File Download initiated : 😊 : Wait for Processing : 😖")
+
+    xhr.open('GET', `https://api.ipfsbrowser.com/ipfs/get.php?hash=${FileHash}`, true);
+    xhr.responseType = 'blob';
+    xhr.onload = function() {
+    var urlCreator = window.URL || window.webkitURL;
+    var imageUrl = urlCreator.createObjectURL(this.response);
+    var tag = document.createElement('a');
+    tag.href = imageUrl;
+    tag.target = '_blank';
+    tag.download = `${FileName}.${FileType}`;
+    document.body.appendChild(tag);
+    tag.click();
+    document.body.removeChild(tag);
+  };
+  xhr.onerror = err => {
+    alert('Failed to download, Try again later 😵');
+  };
+  xhr.send();
+  }
+
   const showError = msg =>{
     toast.error(msg, {
     position: "top-center",
@@ -155,9 +182,7 @@ const Home = () => {
 
                       <div className={styles.btn_div}>
 
-                        <a href={`https://ipfs.io/ipfs/${element.FileHash}`} download={element.FileName}>
-                        <button className={styles.bg_blue}><FiDownload /></button>
-                        </a>
+                        <button onClick={()=> DownloadFile(element.FileName, element.FileHash, element.FileType)} className={styles.bg_blue}><FiDownload /></button>
 
                         <button onClick={()=> {
                           let url = `https://ipfs.io/ipfs/${element.FileHash}`;

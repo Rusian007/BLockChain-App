@@ -35,7 +35,9 @@
     margin-bottom: 30px;
 }
 .head h2{
+    font-size: 18px;
     margin-bottom: 5px;
+    overflow: hidden;
 }
 .subType span{
     padding: 5px 12px;
