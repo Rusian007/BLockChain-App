@@ -46,7 +46,7 @@ export default function TopNav({getTheFile}) {
             ref={inputref}
             style={{ display: "none" }}
             type="file"
-            accept=".png,.jpg,.pdf,.txt,.svg, text/css, text/html"
+            accept=".png,.jpg,.pdf,.txt,.svg"
             onChange={getTheFile}
           />
         </div>
@@ -74,7 +74,7 @@ export default function TopNav({getTheFile}) {
               ref={inputref}
               style={{ display: "none" }}
               type="file"
-              accept=".png,.jpg,.pdf,.txt,.ppt,.svg,.html,.css"
+              accept=".png,.jpg,.pdf,.txt,.ppt,.svg"
               onChange={getTheFile}
             />
           </div>
