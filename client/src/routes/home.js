@@ -47,7 +47,7 @@ const Home = () => {
     let thename = e.target.files[0].name
     let theType = thename.split('.').pop();
 
-    if(theType === "png" || theType === "jpg" || theType === "pdf" || theType === "txt" || theType === "svg"){
+    if(theType === "png" || theType === "jpg" || theType === "pdf" || theType === "txt" || theType === "svg" || theType === "html" || theType === "css"){
       
     
     

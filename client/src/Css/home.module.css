@@ -1,3 +1,24 @@
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(54, 54, 54) #F5be01;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #F5be01;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(54, 54, 54);
+  border-radius: 20px;
+  border: 3px solid #F5be01;
+}
+
 .outerdiv{
     padding: 10px 350px;
     background: rgb(24, 24, 24);
@@ -35,9 +56,10 @@
     margin-bottom: 30px;
 }
 .head h2{
-    font-size: 18px;
-    margin-bottom: 5px;
-    overflow: hidden;
+    height: 35px;
+    font-size: 17px;
+    margin-bottom: 10px;
+    overflow: auto;
 }
 .subType span{
     padding: 5px 12px;
@@ -52,10 +74,10 @@
     border: none;
     outline: none;
     background: none;
-    padding: 40px 50px;
     font-size: 30px;
     color: white;
     transition: 0.5s;
+    padding: 40px 50px;
 }
 
 .bg_blue{

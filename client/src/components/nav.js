@@ -3,7 +3,7 @@ import styles from "../Css/nav.module.css";
 import { ImCross } from "react-icons/im";
 import { CgOptions } from "react-icons/cg";
 import "react-toastify/dist/ReactToastify.css";
-import logo from '../img/logo.png';
+import logo from '../img/logoB.png'
 
 export default function TopNav({getTheFile}) {
   const [toggle, setToggle] = useState(false);
@@ -52,10 +52,6 @@ export default function TopNav({getTheFile}) {
         </div>
 
         <div>
-          <button className={styles.btn}>Share Files</button>
-        </div>
-
-        <div>
           <button className={styles.btn}>Profile</button>
         </div>
       </div>
@@ -78,15 +74,10 @@ export default function TopNav({getTheFile}) {
               ref={inputref}
               style={{ display: "none" }}
               type="file"
-              accept=".png,.jpg,.pdf,.docx,.ppt,.svg"
+              accept=".png,.jpg,.pdf,.txt,.ppt,.svg,.html,.css"
               onChange={getTheFile}
             />
           </div>
-
-          <div>
-            <button className={styles.btn}>Share Files</button>
-          </div>
-
           <div>
             <button className={styles.btn}>Profile</button>
           </div>

@@ -6,6 +6,7 @@
 .flex{
     display: flex;
     justify-content: space-between;
+    justify-items: center;
     align-items: center;
 }
 .btn:hover{
@@ -32,6 +33,7 @@
 }
 .nav{
     padding: 35px 0px 10px 0px;
+    margin-bottom: 20px;
 }
 .bg_none{
     color: var(--btn_bg) !important;
