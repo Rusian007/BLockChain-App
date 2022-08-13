@@ -1,0 +1,7 @@
+// package.json
+
+{
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^2.0.13"
+  }
+}

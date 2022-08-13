@@ -5,20 +5,33 @@ import styles from "../Css/home.module.css";
 import { useNavigate } from "react-router-dom";
 import userContract from "../contracts/users.json";
 import Web3 from "web3";
-import { create } from "ipfs-http-client";
+//import { create} from "ipfs-http-client";
 import { toast, ToastContainer } from "react-toastify";
 import { FiDownload } from "react-icons/fi";
 import { FiLink } from "react-icons/fi";
 import copy from "copy-to-clipboard";
-
+const ipfsClient = require('ipfs-http-client');
 
 const Home = () => {
   let account = sessionStorage.getItem("accounts");
-  const client = create("https://ipfs.infura.io:5001/api/v0");
+  //const client = create("https://ipfs.infura.io:5001/api/v0");
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState(null);
   const [fileType, setFileType] = useState(null);
   const [urls, setUrls] = useState(null);
+  const projectID ="b4316d4c35e44f83a042a717f86acbb6"
+  const projectSecret = 'c920...XXX';
+
+  const auth = 'Basic ' + Buffer.from(projectID + ':' + projectSecret).toString('base64');
+  const client = ipfsClient.create({
+    host: 'ipfs.infura.io',
+    port: 5001,
+    protocol: 'https',
+    headers: {
+        authorization: auth,
+    },
+})
+
   let btnref = useRef(null);
   let web3 = null,
     networkId = sessionStorage.getItem("networkId"),
@@ -73,7 +86,7 @@ const Home = () => {
     //
   };
   const UploadFile = async () => {
-    const added = await client.add(file);
+    const added = await client.add(file); //error here fix later MUST
 
     // added.path has the string, Store the string here
     // ############ //
