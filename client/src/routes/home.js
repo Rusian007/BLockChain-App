@@ -5,12 +5,15 @@ import styles from "../Css/home.module.css";
 import { useNavigate } from "react-router-dom";
 import userContract from "../contracts/users.json";
 import Web3 from "web3";
+import process from 'process'
 //import { create} from "ipfs-http-client";
 import { toast, ToastContainer } from "react-toastify";
 import { FiDownload } from "react-icons/fi";
 import { FiLink } from "react-icons/fi";
 import copy from "copy-to-clipboard";
-const ipfsClient = require('ipfs-http-client');
+import { Web3Storage } from 'web3.storage/dist/bundle.esm.min.js'
+//import { Web3Storage } from 'web3.storage'
+//const ipfsClient = require('ipfs-http-client');
 
 const Home = () => {
   let account = sessionStorage.getItem("accounts");
@@ -19,10 +22,10 @@ const Home = () => {
   const [fileName, setFileName] = useState(null);
   const [fileType, setFileType] = useState(null);
   const [urls, setUrls] = useState(null);
-  const projectID ="b4316d4c35e44f83a042a717f86acbb6"
-  const projectSecret = 'c920...XXX';
+  //const projectID ="b4316d4c35e44f83a042a717f86acbb6"
+  //const projectSecret = 'c920...XXX';
 
-  const auth = 'Basic ' + Buffer.from(projectID + ':' + projectSecret).toString('base64');
+  /*const auth = 'Basic ' + Buffer.from(projectID + ':' + projectSecret).toString('base64');
   const client = ipfsClient.create({
     host: 'ipfs.infura.io',
     port: 5001,
@@ -31,6 +34,16 @@ const Home = () => {
         authorization: auth,
     },
 })
+*/
+
+const getAccessToken =()=> {
+  // If you're just testing, you can paste in a token
+  return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDY5MUJjQUYzRDkxNzZGN2RDYTc0Y2M4NjVmM2Q0RTVBMDdCZjI2QmYiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjA0NTg0ODU1MTMsIm5hbWUiOiJibG9ja2RldiJ9.eVct-MSeamw2l67NumcAHJMiVu2DXLP8qpdCArjeXRI"
+}
+
+const makeStorageClient =()=> {
+  return new Web3Storage({ token: getAccessToken() })
+}
 
   let btnref = useRef(null);
   let web3 = null,
@@ -66,14 +79,15 @@ const Home = () => {
     
     setFileName(thename)
     setFileType(theType)
-    console.log(thename)
-
+    console.log("File is being set !")
+    setFile(e.target.files[0]);
+    
     reader.onloadend = () => {
       thefile = Buffer(reader.result);
-      setFile(thefile);
+      //setFile(thefile);
       btnref.current.click();
     };
-
+  
     showSuccess("File Uploaded for Processing 😄");
 
     return;
@@ -86,17 +100,21 @@ const Home = () => {
     //
   };
   const UploadFile = async () => {
-    const added = await client.add(file); //error here fix later MUST
-
+   // const added = await client.add(file); //error here fix later MUST
+    const client = makeStorageClient()
+    let files =[]
+    files.push(file)
+    const cid = await client.put(files)
+    console.log(' ', cid)
     // added.path has the string, Store the string here
     // ############ //
     // https://ipfs.io/ipfs/<CID>
 
-    await instance.methods
-      .HashStore(account, added.path, fileName, fileType)
+   await instance.methods
+      .HashStore(account, cid, fileName, fileType)
       .send({ from: account });
     ReturnHash();
-    
+   
   };
 
   const ReturnHash = async () => {
@@ -112,7 +130,7 @@ const Home = () => {
     //send feedBack
     showSuccess("File Download initiated : 😊 : Wait for Processing : 😖")
 
-    xhr.open('GET', `https://api.ipfsbrowser.com/ipfs/get.php?hash=${FileHash}`, true);
+    xhr.open('GET', `https://api.ipfsbrowser.com/ipfs/get.php?hash=${FileHash}/${FileName}`, true);
     xhr.responseType = 'blob';
     xhr.onload = function() {
     var urlCreator = window.URL || window.webkitURL;
@@ -120,7 +138,7 @@ const Home = () => {
     var tag = document.createElement('a');
     tag.href = imageUrl;
     tag.target = '_blank';
-    tag.download = `${FileName}.${FileType}`;
+    tag.download = `${FileName}`;
     document.body.appendChild(tag);
     tag.click();
     document.body.removeChild(tag);
@@ -198,7 +216,7 @@ const Home = () => {
                         <button onClick={()=> DownloadFile(element.FileName, element.FileHash, element.FileType)} className={styles.bg_blue}><FiDownload /></button>
 
                         <button onClick={()=> {
-                          let url = `https://ipfs.io/ipfs/${element.FileHash}`;
+                          let url = `https://ipfs.io/ipfs/${element.FileHash}/${element.FileName}`;
                           copy(url);
                           showSuccess("Link Copied")
                         }} className={styles.bg_red}><FiLink /></button>
