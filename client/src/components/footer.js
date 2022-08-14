@@ -9,14 +9,13 @@ export default function Footer (){
 			<div className={styles.footer}>
                 <div className={styles.links}>
 
-                    <a href="#">Contact</a>
-                    <a href="#">About Us</a>
+                    <a href="https://ethereum.org/en/">Learn about Ethereum</a>
                     
                 </div>
 
                 <div className={styles.media}>
-                    <a href="#">< FaFacebookF style={{color:'#F5be01',height: 'auto'}}/></a> {/*color:"rgb(96, 96, 255)"*/}
-                    <a href="#"> <FaTwitter style={{color:"#F5be01", height: 'auto'}} /></a> {/*color:"rgb(96, 96, 255)"*/}
+                    <a href="https://www.facebook.com/ethereumproject">< FaFacebookF style={{color:'#F5be01',height: 'auto'}}/></a> {/*color:"rgb(96, 96, 255)"*/}
+                    <a href="https://twitter.com/ethereum"> <FaTwitter style={{color:"#F5be01", height: 'auto'}} /></a> {/*color:"rgb(96, 96, 255)"*/}
                 </div>
             </div>
 		</>

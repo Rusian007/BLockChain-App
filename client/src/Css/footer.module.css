@@ -6,14 +6,17 @@
 .links{
     display: flex;
     justify-content: space-between;
+    font-size: 16px;
 }
 .links a{
     margin-right: 30px;
     color:#F5be01; /*rgb(187, 187, 187)*/
+    font-weight: bold;
 }
 .media{
     display: flex;
     justify-content: space-between;
+    font-size: 19px;
 }
 .media a{
     margin-left: 30px;

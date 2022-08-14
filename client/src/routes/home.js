@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import TopNav from "../components/nav";
 import Footer from "../components/footer";
 import styles from "../Css/home.module.css";
-import { useNavigate } from "react-router-dom";
 import userContract from "../contracts/users.json";
 import Web3 from "web3";
 import process from 'process'
+import { useNavigate } from "react-router-dom";
 //import { create} from "ipfs-http-client";
 import { toast, ToastContainer } from "react-toastify";
 import { FiDownload } from "react-icons/fi";
@@ -57,7 +57,7 @@ const makeStorageClient =()=> {
       userContract.abi,
       deployedNetwork && deployedNetwork.address //if there is a deployed network then get the address
     );
-  }
+  } 
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -87,7 +87,7 @@ const makeStorageClient =()=> {
       //setFile(thefile);
       btnref.current.click();
     };
-  
+
     showSuccess("File Uploaded for Processing 😄");
 
     return;
@@ -106,6 +106,7 @@ const makeStorageClient =()=> {
     files.push(file)
     const cid = await client.put(files)
     console.log(' ', cid)
+    showSuccess("File send to WEB3, waiting to confirm 😊");
     // added.path has the string, Store the string here
     // ############ //
     // https://ipfs.io/ipfs/<CID>
@@ -114,7 +115,7 @@ const makeStorageClient =()=> {
       .HashStore(account, cid, fileName, fileType)
       .send({ from: account });
     ReturnHash();
-   
+   showSuccess("Upload Complete 😍");
   };
 
   const ReturnHash = async () => {

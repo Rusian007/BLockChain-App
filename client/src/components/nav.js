@@ -4,9 +4,12 @@ import { ImCross } from "react-icons/im";
 import { CgOptions } from "react-icons/cg";
 import "react-toastify/dist/ReactToastify.css";
 import logo from '../img/logoB.png'
+import { useNavigate } from "react-router-dom";
 
 export default function TopNav({getTheFile}) {
   const [toggle, setToggle] = useState(false);
+  const [overlayToggle, setOverlayToggle] = useState(false);
+  const navigate = useNavigate();
   const inputref = useRef(null);
   const imgref = useRef(null);
   let inputEle = null;
@@ -24,7 +27,18 @@ export default function TopNav({getTheFile}) {
     inputEle.click();
   };
 
-  
+  const ToggleOverlay =()=>{
+    if(overlayToggle){
+      setOverlayToggle(false);
+    } else {
+      setOverlayToggle(true);  
+    }
+  }
+
+  const RemoveSession =()=>{
+    sessionStorage.removeItem("accounts")
+    navigate('/SignIn')
+  }
 
   
 
@@ -79,7 +93,7 @@ export default function TopNav({getTheFile}) {
             />
           </div>
           <div>
-            <button className={styles.btn}>Profile</button>
+            <button onClick={ToggleOverlay} className={styles.btn}>Quit</button>
           </div>
         </div>
 
@@ -89,6 +103,21 @@ export default function TopNav({getTheFile}) {
           </button>
         </div>
       </nav>
+      {overlayToggle? (
+        <>
+        <div className={styles.overlay}>
+      </div>
+
+        <div className={styles.FloatBox}>
+          <h3>EXIT CLOUD ?</h3>
+          <button onClick={RemoveSession} className={styles.Exitbtn}> Disconnect </button>
+          <button onClick={ToggleOverlay} className={styles.Exitbtn}> Cancel </button>
+        </div>
+        </>
+        )
+        : ""}
+      
+      
     </>
   );
 }
